@@ -3,6 +3,10 @@ public class Cliente extends Banco{
     protected String cpf;
     protected String id;
 
+    public Cliente(Double saldo) {
+        super(saldo);
+    }
+
     public Cliente(Double saldo, String nome, String cpf, String id) {
         super(saldo);
         this.nome = nome;
