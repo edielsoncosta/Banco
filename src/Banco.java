@@ -1,14 +1,10 @@
 public class Banco{
-    protected Double saldo;
     protected Double deposito;
     protected Double saque;
+    protected Double saldo;
 
     public Banco(Double saldo) {
         this.saldo = saldo;
-    }
-
-    public Double getSaldo() {
-        return saldo;
     }
 
     public Double getDeposito() {
@@ -19,11 +15,19 @@ public class Banco{
         return saque;
     }
 
+    // saque sem taxa para clientes cpf
+
     public Double saque(Double saque) {
         return saldo -= saque;
     }
 
+    // deposito sem taxa para clientes cpf
+
     public Double deposito(Double deposito) {
         return saldo += deposito;
+    }
+
+    public String printDetails() {
+        return "\nSaldo atual: R$"+ String.format("%.2f", saldo);
     }
 }
