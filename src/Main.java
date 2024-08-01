@@ -22,6 +22,7 @@ public class Main{
         double saldo = sc.nextDouble();
 
         Banco banco = new Banco(saldo);
+        Banco cliente = new Cliente(saldo);
 
         System.out.println("quer fazer saque (yes/no)? ");
         String decisaoSaque = sc.next().toUpperCase();
@@ -36,14 +37,18 @@ public class Main{
                 System.out.println("Valor do saque maior que seu saldo!");
                 System.out.print("seu saldo é de: R$" + saldo + ", valor do saque: ");
                 saque = sc.nextDouble();
+                cliente.saque(saque);
             }
             System.out.print("Gostaria de fazer depósito (yes/no): ");
             String decisaoDeposito = sc.next().toUpperCase();
             if (decisaoDeposito.equals("YES")){
                 System.out.print("valor do depósito: R$");
                 double deposito = sc.nextDouble();
+                cliente.deposito(deposito);
             }
         }
+
+        System.out.println(cliente.printDetails());
         sc.close();
     }
 }
