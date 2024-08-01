@@ -2,8 +2,8 @@ public class ClienteEE extends Banco{
 
     private String cnpj;
 
-    public ClienteEE(Double saldo, Double deposito, Double saque, String cnpj) {
-        super(saldo, deposito, saque);
+    public ClienteEE(Double saldo, String cnpj) {
+        super(saldo);
         this.cnpj = cnpj;
     }
 
@@ -21,5 +21,11 @@ public class ClienteEE extends Banco{
     @Override
     public Double deposito(Double deposito) {
         return saldo += deposito - 5.0;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + " - cnpj (" + cnpj + ")";
     }
 }
