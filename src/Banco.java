@@ -3,10 +3,8 @@ public class Banco{
     protected Double deposito;
     protected Double saque;
 
-    public Banco(Double saldo, Double deposito, Double saque) {
+    public Banco(Double saldo) {
         this.saldo = saldo;
-        this.deposito = deposito;
-        this.saque = saque;
     }
 
     public Double getSaldo() {
