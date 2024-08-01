@@ -15,15 +15,19 @@ public class Banco{
         return saque;
     }
 
+    // saque sem taxa para clientes cpf
+
     public Double saque(Double saque) {
         return saldo -= saque;
     }
+
+    // deposito sem taxa para clientes cpf
 
     public Double deposito(Double deposito) {
         return saldo += deposito;
     }
 
     public String printDetails() {
-        return "R$"+ saldo;
+        return "\nSaldo atual: R$"+ String.format("%.2f", saldo);
     }
 }

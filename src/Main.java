@@ -1,4 +1,3 @@
-import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -21,10 +20,10 @@ public class Main{
         System.out.print("Saldo inicial: ");
         double saldo = sc.nextDouble();
 
-        Banco banco = new Banco(saldo);
         Banco cliente = new Cliente(saldo);
+        Cliente dadosCliente = new Cliente(saldo, nomeUsuario, cpfUsuario, idUsuario);
 
-        System.out.println("quer fazer saque (yes/no)? ");
+        System.out.print("Gostaria de fazer saque (yes/no)? ");
         String decisaoSaque = sc.next().toUpperCase();
 
         if (decisaoSaque.equals("YES")){
@@ -39,16 +38,59 @@ public class Main{
                 saque = sc.nextDouble();
                 cliente.saque(saque);
             }
-            System.out.print("Gostaria de fazer depósito (yes/no): ");
-            String decisaoDeposito = sc.next().toUpperCase();
-            if (decisaoDeposito.equals("YES")){
-                System.out.print("valor do depósito: R$");
-                double deposito = sc.nextDouble();
-                cliente.deposito(deposito);
-            }
+            cliente.saque(saque);
+        }
+        System.out.print("Gostaria de fazer depósito (yes/no): ");
+        String decisaoDeposito = sc.next().toUpperCase();
+        if (decisaoDeposito.equals("YES")){
+            System.out.print("valor do depósito: R$");
+            double deposito = sc.nextDouble();
+            cliente.deposito(deposito);
         }
 
-        System.out.println(cliente.printDetails());
+        System.out.println(dadosCliente + cliente.printDetails());
+
+        System.out.print("tem conta empresarial(yes/no): ");
+        String decisaoContaEmpresarial = sc.next().toUpperCase();
+
+        sc.nextLine();
+
+        if (decisaoContaEmpresarial.equals("YES")) {
+            System.out.print("nome da empresa: ");
+            String nomeEmpresa = sc.nextLine();
+            System.out.print("CNPJ: ");
+            String cnpj = sc.next();
+
+            System.out.print("saldo atual da empresa: R$");
+            double saldoEmpresa = sc.nextDouble();
+
+            Banco clienteEmpresarial = new ClienteEE(saldoEmpresa, cnpj);
+
+            System.out.print("quer fazer depósito, taxa(5R$) (yes/no)? ");
+            String decisaoDepositoEmpresa = sc.next().toUpperCase();
+
+            if (decisaoDepositoEmpresa.equals("YES")) {
+                System.out.print("valor deposito: ");
+                double depositoEmpresa = sc.nextDouble();
+                clienteEmpresarial.deposito(depositoEmpresa);
+            }
+            System.out.print("quer fazer saque taxa(R$5)? ");
+            String decisaoSaqueEmpresarial = sc.next().toUpperCase();
+
+            if (decisaoSaqueEmpresarial.equals("YES")) {
+                System.out.print("valor do saque: ");
+                double saqueEmpresarial = sc.nextDouble();
+                while (saqueEmpresarial > saldoEmpresa) {
+                    System.out.println("valor acima do saldo da empresa, saldo atual: R$" + saldoEmpresa);
+                    System.out.print("valor do saque: ");
+                    saqueEmpresarial = sc.nextDouble();
+                    clienteEmpresarial.saque(saqueEmpresarial);
+                }
+                clienteEmpresarial.saque(saqueEmpresarial);
+
+            }
+            System.out.print(clienteEmpresarial);
+        }
         sc.close();
     }
 }

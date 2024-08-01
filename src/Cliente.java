@@ -3,6 +3,8 @@ public class Cliente extends Banco{
     protected String cpf;
     protected String id;
 
+    // herdando saldo da classe Banco
+
     public Cliente(Double saldo) {
         super(saldo);
     }
@@ -26,6 +28,7 @@ public class Cliente extends Banco{
         return id;
     }
 
+    // override para sobrepor o Banco
     @Override
     public String toString() {
         return "nome: "
